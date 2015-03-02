@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+	<head>
+		<meta charset="UTF-8">
+		<title>Cake|Meat generator</title>
+		<style type="text/css">
+			.searchArea {
+				border: solid 1px;
+				border-radius: 5px;
+				padding: 10px;
+				width: 320px;
+				margin: 0 auto;
+				font-family: sans-serif;
+				font-size: x-large;
+				background-color: rgb(135, 179, 235);
+			}
+
+			.imageArea {
+				width: 1250px;
+				margin: 0 auto;
+				border: solid12px;
+				padding: 5px;
+				border-radius: 5px;
+				background-color: rgb(208, 176, 214);
+			}
+
+			button {
+				font-size: larger;
+			}
+
+			.progress {
+				width: 1200px;
+				height: 32px;
+			}
+		</style>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<link rel="stylesheet"
+		href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
+		<script
+		src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+		<script
+		src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
+		<script type="text/javascript" src="scripts/myapp/bootstrap.js"></script>
+		<script type="text/javascript" src="scripts/myapp/controllers.js"></script>
+		<script type="text/javascript" src="scripts/myapp/services.js"></script>
+
+		<script type="text/javascript">
+			window.fbAsyncInit = function() {
+				FB.init({
+					appId : '1460085334241500',
+					xfbml : true,
+					version : 'v2.0'
+				});
+			};
+			( function(d, s, id) {
+					var js,
+					    fjs = d.getElementsByTagName(s)[0];
+					if (d.getElementById(id)) {
+						return;
+					}
+					js = d.createElement(s);
+					js.id = id;
+					js.src = "//connect.facebook.net/en_US/sdk.js";
+					fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));
+			$(function() {
+				$(".progress").progressbar({
+					value : false
+				});
+			});
+		</script>
+	</head>
+	<body ng-controller="home">
+		<div class="searchArea">
+			<div>
+				<label>Word 1:</label>
+				<input type="text" ng-model="wordOne" />
+			</div>
+			<div>
+				<label>Word 2:</label>
+				<input type="text" ng-model="wordTwo" />
+			</div>
+			<div>
+				<button ng-click="handleClick()">
+					{{wordOne}}|{{wordTwo}}
+				</button>
+			</div>
+		</div>
+
+		<div class="imageArea" style="display:{{imgAreaDisplayValue}}">
+			<div class="progress" style="display:{{progressDisplayValue}}"></div>
+			<img ng-src="{{dataOne}}"
+			style="display:{{imgDisplayValue}}; width: 600px;" alt="{{wordOne}}" />
+			<img ng-src="{{dataTwo}}"
+			style="display:{{imgDisplayValue}};width: 600px;" alt="{{wordTwo}}" />
+			<button ng-click="postToFacebook()">
+				Share to Facebook
+			</button>
+		</div>
+	</body>
+</html>
